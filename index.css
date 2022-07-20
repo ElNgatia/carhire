@@ -1,6 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+
 .nav_bar {
     overflow: hidden;
     background-color: azure;
+    margin-left: auto;
+    /* height: 75px; */
 }
 
 
@@ -10,22 +17,63 @@
     padding: 0;
     overflow: hidden;
 
+
 }
 
 .nav_bar a {
     float: left;
-    display: block;
     color: black;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
 
 .nav_bar li a {
-    display: inline-block;
-    padding: 10px;
+    display: block;
+    padding: 25px;
     margin: 0;
     border-right: 1px solid #ccc;
+    height: 75px;
+}
 
+#nav_logo {
+    width: 75px;
+    height: 75px;
+    float: left;
+    background-color: azure;
+
+}
+
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 150px;
+}
+
+.header_img {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.top_header {
+    height: 150px;
+    background-color: #00bfff;
+
+}
+
+.main_header {
+    height: 75px;
+
+}
+
+body {
+    margin: 1px;
+    padding: 0;
+    font-size: 28px;
+    background-color: ivory;
 }
