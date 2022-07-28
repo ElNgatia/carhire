@@ -1,3 +1,115 @@
+<?php
+// Include config file
+require_once "config.php";
+
+// Define variables and initialize with empty values
+$name = $email = $phone = $date = $time = $people = $message = $location = "";
+$name_err = $email_err = $phone_err = $date_err = $time_err = $people_err = $message_err = $location_err = "";
+
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate name
+    $input_name = trim($_POST["name"]);
+    if (empty($input_name)) {
+        $name_err = "Please enter a name.";
+    } elseif (!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))) {
+        $name_err = "Please enter a valid name.";
+    } else {
+        $name = $input_name;
+    }
+
+    // Validate email address
+    $input_email = trim($_POST["email"]);
+    if (empty($input_email)) {
+        $email_err = "Please enter an email address.";
+    } else {
+        $email = $input_email;
+    }
+
+    // Validate phone number
+    $input_phone = trim($_POST["phone"]);
+    if (empty($input_phone)) {
+        $phone_err = "Please enter a phone number.";
+    } elseif (!ctype_digit($input_phone)) {
+        $phone_err = "Please enter a positive integer value.";
+    } else {
+        $phone = $input_phone;
+    }
+
+    // Validate date
+    $input_date = trim($_POST["date"]);
+    if (empty($input_date)) {
+        $date_err = "Please enter a date.";
+    } else {
+        $date = $input_date;
+    }
+
+    // Validate time
+    $input_time = trim($_POST["time"]);
+    if (empty($input_time)) {
+        $time_err = "Please enter a time.";
+    } else {
+        $time = $input_time;
+    }
+
+    // Validate people
+    $input_people = trim($_POST["people"]);
+    if (empty($input_people)) {
+        $people_err = "Please enter a number of people.";
+    } elseif (!ctype_digit($input_people)) {
+        $people_err = "Please enter a positive integer value.";
+    } else {
+        $people = $input_people;
+    }
+
+    // Validate location
+    $input_location = trim($_POST["location"]);
+    if (empty($input_location)) {
+        $location_err = "Please enter a location.";
+    } else {
+        $location = $input_location;
+    }
+
+    // Check input errors before inserting in database
+    if (empty($name_err) && empty($email_err) && empty($phone_err) && empty($date_err) && empty($time_err) && empty($people_err) && empty($message_err) && empty($location_err)) {
+        // Prepare an insert statement
+        $sql = "INSERT INTO reservations (name, email, phone, date, time, people, message, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_name, $param_email, $param_phone, $param_date, $param_time, $param_people, $param_message, $param_location);
+
+            // Set parameters
+            $param_name = $name;
+            $param_email = $email;
+            $param_phone = $phone;
+            $param_date = $date;
+            $param_time = $time;
+            $param_people = $people;
+            $param_message = $message;
+            $param_location = $location;
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Records created successfully. Redirect to landing page
+                header("location: index.php");
+                exit();
+            } else {
+                echo "Something went wrong. Please try again later.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,7 +196,7 @@
             <div class="reservation" id="reservation">
                 <div>
                     <h2>Send a reservation</h2>
-                    <form action="reservation.php" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <label for="name">Name:</label>
                         <input type="text" name="name" id="name" placeholder="Enter your name">
                         <label for="email">Email:</label>
