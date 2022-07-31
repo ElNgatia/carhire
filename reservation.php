@@ -196,21 +196,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="reservation" id="reservation">
                 <div>
                     <h2>Send a reservation</h2>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form action="" method="post">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" placeholder="Enter your name">
+                        <input type="text" name="name" id="name" placeholder="Enter your name" class="form-control">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" placeholder="Enter your email">
+                        <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control">
                         <label for="phone">Phone:</label>
-                        <input type="text" name="phone" id="phone" placeholder="Enter your phone number">
+                        <input type="text" name="phone" id="phone" placeholder="Enter your phone number"class="form-control">
                         <label for="date">Date:</label>
-                        <input type="date" name="date" id="date" placeholder="Enter your date">
+                        <input type="date" name="date" id="date" placeholder="Enter your date"class="form-control">
                         <label for="time">Time:</label>
-                        <input type="time" name="time" id="time" placeholder="Enter your time">
+                        <input type="time" name="time" id="time" placeholder="Enter your time"class="form-control">
                         <label for="people">People:</label>
-                        <input type="number" name="people" id="people" placeholder="Enter the number of people">
+                        <input type="number" name="people" id="people" placeholder="Enter the number of people"class="form-control">
                         <label for="car">Car:</label>
-                        <select name="car" id="car">
+                        <select name="car" id="car"class="form-control">
                             <option value="">Select a car</option>
                             <option value="1">Toyota</option>
                             <option value="2">Honda</option>
@@ -229,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="15">Renault</option>
                         </select>
                         <label for="location">Location:</label>
-                        <input type="text" name="location" id="location" placeholder="Enter your location">
+                        <input type="text" name="location" id="location" placeholder="Enter your location"class="form-control">
                         <input type="submit" value="Submit">
                     </form>
                 </div>
