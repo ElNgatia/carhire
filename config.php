@@ -1,6 +1,6 @@
 <?php
 // Database credentials
-$url = getenv('JAWSDB_MARIA_URL');
+$url = getenv('mysql://j0onb93wjq9el4fo:c9ga626v966c83kg@clwxydcjair55xn0.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/ueiltl5bbbbxu9qs');
 $dbparts = parse_url($url);
 
 $hostname = $dbparts['clwxydcjair55xn0.chr7pe7iynqr.eu-west-1.rds.amazonaws.com'];
