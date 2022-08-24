@@ -16,4 +16,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connection was successfully established!";
+
+//Create tables
+$sql = "CREATE TABLE reservation (
+name VARCHAR(20) NOT NULL PRIMARY KEY,
+email VARCHAR(30) NOT NULL,
+phone INT NOT NULL,
+message VARCHAR(50) NOT NULL
+)";
 ?>
