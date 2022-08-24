@@ -3,10 +3,10 @@
 $url = getenv('JAWSDB_MARIA_URL');
 $dbparts = parse_url($url);
 
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
+$hostname = $dbparts['clwxydcjair55xn0.chr7pe7iynqr.eu-west-1.rds.amazonaws.com'];
+$username = $dbparts['j0onb93wjq9el4fo'];
+$password = $dbparts['c9ga626v966c83kg'];
+$database = ltrim($dbparts['ueiltl5bbbbxu9qs'],'/');
 
 // Create connection
 $conn = new mysqli($hostname, $username, $password, $database);
